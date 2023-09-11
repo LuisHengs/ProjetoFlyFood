@@ -99,7 +99,7 @@ class Cromossomo:
                 soma += math.sqrt(((verticeUmDaVez.coordX - verticeDoisDaVez.coordX) ** 2) + (
                             (verticeUmDaVez.coordY - verticeDoisDaVez.coordY) ** 2))
 
-            # Adiciona a distância entre o último ponto diferente de (0, ...) e o ponto (0, ...)
+            
             ultimo_ponto = listaPontosdeVisita[self.caminho[-2]]
             ponto_retorno = listaPontosdeVisita[0]
             soma += math.sqrt(((ponto_retorno.coordX - ultimo_ponto.coordX) ** 2) + (
@@ -122,7 +122,7 @@ def geraPopulacao():
         cromossomo = Cromossomo()
         cromossomo.caminho = inicializadorDaPopulacao[:]
         random.shuffle(cromossomo.caminho)
-        cromossomo.caminho = [0] + cromossomo.caminho + [0]  # Adiciona o ponto 0 no início e no final do caminho
+        cromossomo.caminho = [0] + cromossomo.caminho + [0]  
         heapq.heappush(populacao, cromossomo)
     return populacao
 
@@ -165,8 +165,8 @@ def crossoverIndividuo(individuoUm, individuoDois):
 
 
 def mutacaoIndividuo(caminhoDoNovoFilhoGerado):
-    geneUm = random.randrange(1, tamanhoDaLista)  # Excluindo o ponto (0, ...) da mutação
-    geneDois = random.randrange(1, tamanhoDaLista)  # Excluindo o ponto (0, ...) da mutação
+    geneUm = random.randrange(1, tamanhoDaLista)  
+    geneDois = random.randrange(1, tamanhoDaLista)  
     caminhoDoNovoFilhoGerado[geneUm], caminhoDoNovoFilhoGerado[geneDois] = caminhoDoNovoFilhoGerado[geneDois], \
     caminhoDoNovoFilhoGerado[geneUm]
     return caminhoDoNovoFilhoGerado
@@ -233,14 +233,14 @@ while geracao <= qtdGeracao:
 
     print(f'Geração {geracao}: Melhor Fitness = {melhor_fitness}')
 
-    # Após calcular o melhorIndividuo
+    
     melhorIndividuo = obtemMelhor(populacao)
 
-    # Remove o último "0" que representa o ponto de retorno
+    
     if len(melhorIndividuo.caminho) > 1 and melhorIndividuo.caminho[-1] == 0:
         melhorIndividuo.caminho.pop()
 
-    # Adiciona o PontodeVisita(0, ...) como "0" no final da sequência
+    
     melhorIndividuo.caminho.append(0)
 
     print(f"Melhor indivíduo (Menor distância): {melhorIndividuo.caminho}")
