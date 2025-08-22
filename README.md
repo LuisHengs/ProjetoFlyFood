@@ -56,6 +56,7 @@ Execute cada algoritmo individualmente:
 python força_bruta.py
 python genetico.py
 python colonia_formigas.py
+```
 
 
 📊 Resultados
